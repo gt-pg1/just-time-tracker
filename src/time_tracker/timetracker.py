@@ -12,8 +12,8 @@ def delete(rowid):
     delete_activity(rowid)
 
 
-def update(rowid, category=None, task=None):
-    update_activity(rowid, category, task)
+def update(rowid, category=None, task=None, comment=None, date_added=None, date_completed=None):
+    update_activity(rowid, category, task, comment, date_added, date_completed)
 
 
 def complete(rowid):
@@ -27,11 +27,9 @@ def show():
 
 
 def first_start():
-    add('TEST', 'TTEST', 'Writen')
-    delete(12)
-    show()
-    update(5, 'NewTEST')
-    complete(13)
+    update(18, comment='Comment for test added 2')
+
+
 
 
 if __name__ == '__main__':
