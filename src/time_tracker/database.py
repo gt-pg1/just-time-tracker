@@ -26,11 +26,8 @@ def insert_activity(timetracker: TimeTracker):
     with con:
         data = timetracker.data
 
-        if data['date_start'] is None:
-            raise TypeError("'date_start' can't be None")
-
-        if not isinstance(data['date_start'], int) or not isinstance(data['date_end'], int):
-            raise TypeError("'date_start' and 'date_end' must be an UNIX time format (int)")
+        if not isinstance(data['date_start'], int) or not isinstance(data['date_end'], (int | None)):
+            raise TypeError("'date_start' and 'date_end' must be an UNIX time format (int) or None (only for 'date_end')")
 
         if data['date_end'] and data['date_start'] > data['date_end']:
             raise ValueError("date_start can't be bigger than date_end")
