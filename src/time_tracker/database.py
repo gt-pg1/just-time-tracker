@@ -76,12 +76,13 @@ def update_activity(
         rowid: int, category: Optional[str], task: Optional[str], comment: Optional[str],
         date_start: Optional[int], date_end: Optional[int]
 ) -> None:
-    data: Activity = {'rowid': rowid,
-                      'category': category,
+    data: Activity = {'category': category,
                       'task': task,
                       'comment': comment,
                       'date_start': date_start,
-                      'date_end': date_end}
+                      'date_end': date_end,
+                      'duration': None,
+                      'rowid': rowid}
 
     with con:
         cur.execute("SELECT rowid, * FROM activities WHERE rowid=:rowid", data)

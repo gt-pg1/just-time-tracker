@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 import calendar
 import time
 from typing import *
@@ -31,17 +31,17 @@ def complete(rowid: int) -> None:
 
 
 def show(start: int = 0, end: int = 10413795661) -> None:
-    activities = get_activities(start, end)
+    activities: List[TimeTracker] = get_activities(start, end)
     for activity in activities:
         print(activity)
 
 
 def show_by_day(year: int, month: int, day: int) -> None:
-    date_start: datetime.datetime = datetime.datetime(year, month, day, 0, 0, 0)
+    date_start: datetime = datetime(year, month, day, 0, 0, 0)
     date_start_tuple: time.struct_time = date_start.utctimetuple()
     date_start_unix: int = calendar.timegm(date_start_tuple)
 
-    date_end: datetime.datetime = datetime.datetime(year, month, day, 23, 59, 59)
+    date_end: datetime = datetime(year, month, day, 23, 59, 59)
     date_end_tuple: time.struct_time = date_end.utctimetuple()
     date_end_unix: int = calendar.timegm(date_end_tuple)
 
@@ -49,14 +49,14 @@ def show_by_day(year: int, month: int, day: int) -> None:
 
 
 def second_start() -> None:
-    date_start = datetime.datetime(2023, 1, 3, 10, 0, 0)
+    date_start = datetime(2023, 1, 3, 15, 0, 0)
     date_start_tuple = date_start.utctimetuple()
     date_start_unix = calendar.timegm(date_start_tuple)
 
-    date_end = datetime.datetime.now()
+    date_end = datetime(2023, 1, 5, 10, 0, 0)
     date_end_tuple = date_end.utctimetuple()
     date_end_unix = calendar.timegm(date_end_tuple)
-    add('Test activity')
+
     show()
 
 
